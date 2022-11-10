@@ -47,9 +47,6 @@ ASlime_warCharacter::ASlime_warCharacter()
 	TPPCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
 	TPPCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
 
-	FPPCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FPPCamera"));
-	FPPCamera->SetupAttachment(USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
-	FPPCamera->bUsePawnControlRotation = false;
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
@@ -129,5 +126,7 @@ void ASlime_warCharacter::MoveRight(float Value)
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 		// add movement in that direction
 		AddMovementInput(Direction, Value);
+
+		
 	}
 }
